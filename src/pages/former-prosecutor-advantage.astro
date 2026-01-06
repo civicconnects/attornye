@@ -1,0 +1,71 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import DefinitionBlock from '../components/common/DefinitionBlock.astro';
+import Button from '../components/common/Button.astro';
+
+const title = "Former Prosecutor Advantage | Criminal Defense Attorney";
+const description = "Learn how former prosecutorial experience can inform strategic criminal defense representation in Louisville, Kentucky.";
+---
+
+<MainLayout title={title} description={description}>
+  <Header slot="header" />
+
+  <main class="py-16 bg-white">
+    <div class="container max-w-4xl">
+      <h1 class="text-4xl font-serif font-bold text-navy-900 mb-6">The Former Prosecutor Advantage</h1>
+
+      <p class="text-lg text-gray-700 leading-relaxed mb-8">
+        Criminal defense representation benefits from a deep understanding of
+        how cases are evaluated, charged, and prosecuted. Attorneys with former
+        prosecutorial experience bring insight into the criminal justice system
+        from both sides of the courtroom.
+      </p>
+
+      <DefinitionBlock
+        title="What Does a Prosecutor Do?"
+        definition="A prosecutor represents the government in criminal cases and is responsible for evaluating evidence, filing charges, negotiating plea agreements, and presenting cases in court."
+        expanded="Prosecutors assess whether evidence meets legal standards, determine appropriate charges, and exercise discretion throughout the life of a case."
+      />
+
+      <DefinitionBlock
+        title="How Former Prosecutorial Experience Informs Defense Strategy"
+        definition="Former prosecutors understand how charging decisions are made, how evidence is weighed, and how cases are prepared for trial, which can inform a more strategic and informed defense approach."
+      />
+
+      <section class="mt-12 mb-8">
+        <h2 class="text-2xl font-serif font-bold text-navy-900 mb-4">Insight Into Case Evaluation</h2>
+        <p class="text-gray-700 leading-relaxed">
+          Experience reviewing police reports, witness statements, and forensic
+          evidence provides perspective on how cases are built and where
+          weaknesses may exist.
+        </p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-2xl font-serif font-bold text-navy-900 mb-4">Understanding Negotiation and Courtroom Strategy</h2>
+        <p class="text-gray-700 leading-relaxed">
+          Former prosecutors are familiar with negotiation dynamics and trial
+          preparation, allowing for informed decisions at every stage of the
+          criminal process.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-serif font-bold text-navy-900 mb-4">Local Criminal Justice Experience in Louisville, Kentucky</h2>
+        <p class="text-gray-700 leading-relaxed">
+          Criminal cases in Louisville and Jefferson County follow local
+          procedures and practices. Familiarity with these processes can be an
+          important factor in navigating the system effectively.
+        </p>
+      </section>
+
+      <Button href="/contact" variant="primary">
+        Request a Confidential Consultation
+      </Button>
+    </div>
+  </main>
+
+  <Footer slot="footer" />
+</MainLayout>
