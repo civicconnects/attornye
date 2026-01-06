@@ -1,0 +1,65 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+
+const title = "Privacy Policy | Ebert Haegele Criminal Defense";
+const lastUpdated = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+---
+
+<MainLayout title={title} description="Privacy Policy and innovation on data collection for the Law Office of Ebert Haegele.">
+  <Header slot="header" />
+
+  <section class="py-16 bg-white">
+    <div class="container max-w-4xl">
+      <h1 class="text-4xl font-serif font-bold text-navy-900 mb-4">Privacy Policy</h1>
+      <p class="text-sm text-gray-500 mb-12">Last Updated: {lastUpdated}</p>
+
+      <div class="prose prose-slate max-w-none prose-headings:font-serif prose-headings:text-navy-900 prose-a:text-accent">
+        
+        <p>The Law Office of Ebert Haegele ("we," "us," or "our") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website.</p>
+
+        <h3>No Attorney-Client Relationship</h3>
+        <p class="bg-amber-50 p-4 border-l-4 border-accent not-prose text-gray-700 italic">
+          <strong>Important Disclamer:</strong> Submitting a form on this website, sending an email, or contacting our office via phone does <strong>not</strong> create an attorney-client relationship. An attorney-client relationship is formed only after we have checked for conflicts of interest and a written agreement is signed by both parties.
+        </p>
+
+        <h3>Information We Collect</h3>
+        <p>We collect information that you voluntarily provide to us when you contact us via our contact forms, email, or phone. This may include:</p>
+        <ul>
+            <li>Name</li>
+            <li>Contact information (email address, phone number)</li>
+            <li>Details associated with your legal inquiry</li>
+        </ul>
+        <p><strong>Please do not submit sensitive or confidential information</strong> (such as Social Security numbers, detailed confessions, or specific case evidence) through this website's contact form. Wait until an attorney-client relationship is established.</p>
+
+        <h3>How We Use Your Information</h3>
+        <p>We use the information you provide solely to:</p>
+        <ul>
+            <li>Evaluate your case and respond to your inquiry.</li>
+            <li>Check for conflicts of interest.</li>
+            <li>Communicate with you regarding legal services.</li>
+        </ul>
+        <p>We do not sell, rent, or trade your personal information to third parties.</p>
+
+        <h3>Cookies and Tracking</h3>
+        <p>This website may use cookies and similar tracking technologies (such as Cloudflare Web Analytics) to analyze website traffic and improve user experience. These tools do not collect personally identifiable information.</p>
+
+        <h3>Data Security</h3>
+        <p>We implement reasonable security measures to protect the information you submit. However, no method of transmission over the Internet is 100% secure. We cannot guarantee the absolute security of data transmitted to our site.</p>
+
+        <h3>Contact Us</h3>
+        <p>If you have questions about this Privacy Policy, please contact us at:</p>
+        <address>
+            <strong>The Law Office of Ebert Haegele</strong><br/>
+            123 Legal Avenue, Suite 100<br/>
+            Louisville, KY 40202<br/>
+            (502) 000-0000
+        </address>
+
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</MainLayout>

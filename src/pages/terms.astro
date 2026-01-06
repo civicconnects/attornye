@@ -1,0 +1,41 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+
+const title = "Terms of Use | Ebert Haegele Criminal Defense";
+---
+
+<MainLayout title={title} description="Terms of use and legal disclaimers for the Law Office of Ebert Haegele.">
+  <Header slot="header" />
+
+  <section class="py-16 bg-white">
+    <div class="container max-w-4xl">
+      <h1 class="text-4xl font-serif font-bold text-navy-900 mb-8">Terms of Use & Disclaimer</h1>
+
+      <div class="prose prose-slate max-w-none prose-headings:font-serif prose-headings:text-navy-900 prose-a:text-accent">
+        
+        <h3>1. No Legal Advice</h3>
+        <p>The materials available at this web site are for informational purposes only and not for the purpose of providing legal advice. You should not contact your attorney to obtain advice with respect to any particular issue or problem. Use of and access to this Web site or any of the email links contained within the site do not create an attorney-client relationship between The Law Office of Ebert Haegele and the user or browser.</p>
+
+        <h3>2. No Guarantee of Results</h3>
+        <p>Representative cases and past results mentioned on this website "The Prosecutor's Advantage" or "Experience" sections correspond to the attorney's past experience as a prosecutor or defense attorney. <strong>Past results do not guarantee future outcomes.</strong> Every criminal case is unique and depends on the specific facts and laws applicable to that case.</p>
+
+        <h3>3. Jurisdiction</h3>
+        <p>The Law Office of Ebert Haegele practices primarily in <strong>Kentucky</strong> (Jefferson County, Oldham County, Bullitt County, Shelby County) and the United States District Court for the Western District of Kentucky. The firm does not seek to represent anyone desiring representation based upon viewing this website in a state where this website fails to comply with all laws and ethical rules of that state.</p>
+
+        <h3>4. Links to Third-Party Sites</h3>
+        <p>This website may contain links to third-party websites (e.g., Avvo, LinkedIn, Court Resources). These links are provided for convenience only and do not imply endorsement/sponsorship. We are not responsible for the content of linked third-party sites.</p>
+
+        <h3>5. Advertising Disclaimer</h3>
+        <p>This website may be considered <strong>Attorney Advertising</strong> under the rules of the Kentucky Bar Association.</p>
+
+        <h3>6. Copyright</h3>
+        <p>Content on this website, including the "EH" logo, design, text, and original photography, is &copy; {new Date().getFullYear()} Ebert Haegele. All rights reserved.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</MainLayout>
