@@ -1,0 +1,102 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import DefinitionBlock from '../../components/common/DefinitionBlock.astro';
+import Button from '../../components/common/Button.astro';
+
+export function getStaticPaths() {
+  const locations = [
+    { slug: 'louisville', name: 'Louisville' },
+    { slug: 'jefferson-county', name: 'Jefferson County' },
+    { slug: 'oldham-county', name: 'Oldham County' },
+    { slug: 'bullitt-county', name: 'Bullitt County' },
+    { slug: 'shelby-county', name: 'Shelby County' }
+  ];
+  
+  const services = [
+    { slug: 'dui', name: 'DUI' },
+    { slug: 'drug-trafficking', name: 'Drug Trafficking' },
+    { slug: 'domestic-violence', name: 'Domestic Violence' },
+    { slug: 'assault', name: 'Assault' },
+    { slug: 'federal-crimes', name: 'Federal Crimes' },
+    { slug: 'expungement', name: 'Expungement' }
+  ];
+  
+  return locations.flatMap(loc => 
+    services.map(srv => ({
+      params: { 
+        location: loc.slug, 
+        service: srv.slug 
+      },
+      props: { location: loc.name, service: srv.name }
+    }))
+  );
+}
+
+const { location, service } = Astro.props;
+
+const title = `${service} Attorney in ${location} | Ebert Haegele`;
+const description = `Top-rated ${service} Defense Attorney serving ${location}. Former Prosecutor Ebert Haegele brings 12+ years of experience to your defense.`;
+---
+
+<MainLayout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="bg-navy-900 text-white py-16 lg:py-24 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 pointer-events-none">
+       <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+         <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+           <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="0.5"/>
+         </pattern>
+         <rect width="100%" height="100%" fill="url(#grid)" />
+       </svg>
+    </div>
+    <div class="container relative z-10 text-center max-w-4xl mx-auto">
+      <div class="mb-8">
+        <a href="/" class="inline-flex items-center gap-2 text-accent font-bold uppercase tracking-wider text-xs hover:text-white transition-colors">
+          &larr; Back to Home
+        </a>
+      </div>
+      <h1 class="text-4xl md:text-6xl font-serif font-bold mb-6">
+        <span class="capitalize">{location}</span> Local Attorney
+      </h1>
+      <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+        Ebert Haegele is a criminal defense attorney serving {location}, bringing years of prosecutorial experience to the defense of individuals facing serious criminal charges.
+      </p>
+      <Button href="/contact" variant="primary">Free Consultation</Button>
+    </div>
+  </section>
+
+  <!-- Content Section -->
+  <section class="py-16 bg-bg-surface">
+    <div class="container max-w-3xl">
+      
+      <div class="bg-white p-8 rounded shadow-sm border-t-4 border-navy-800 mb-12">
+        <h2 class="text-2xl font-serif font-bold text-navy-900 mb-4">Local Defense in {location}</h2>
+         <p class="text-gray-700 mb-4">
+          Criminal charges in <strong>{location}</strong> are handled through local courts and prosecutors. Local experience matters when navigating procedures, expectations, and case strategy.
+        </p>
+        <p class="text-gray-700">
+           As a former prosecutor for over 12 years, I understand exactly how the Commonwealth builds its case against you in {location}.
+        </p>
+      </div>
+
+      <DefinitionBlock
+        title={`What Does a ${service} Attorney Do?`}
+        definition={`A ${service} attorney represents individuals accused of criminal offenses and works to protect their rights at every stage of the legal process.`}
+        expanded={`In ${location}, this involves scrutinizing police reports, challenging evidence collection methods, and negotiating directly with prosecutors to seek dismissal or reduction of charges.`}
+      />
+
+      <DefinitionBlock
+        title="Why Former Prosecutor Experience Matters"
+        definition="A former prosecutor understands how cases are evaluated, charged, and litigated, which can inform more strategic defense decisions."
+      />
+      
+      <div class="mt-12 text-center">
+        <h3 class="text-2xl font-serif font-bold text-primary mb-6">Take Action Now</h3>
+        <Button href="/contact" variant="primary" class="w-full md:w-auto">
+          Request a Confidential Consultation
+        </Button>
+      </div>
+
+    </div>
+  </section>
+</MainLayout>
