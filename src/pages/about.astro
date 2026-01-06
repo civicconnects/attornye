@@ -1,0 +1,63 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import Button from '../components/common/Button.astro';
+import { getEntry, render } from 'astro:content';
+
+const entry = await getEntry('attorney', 'profile');
+if (!entry) {
+  throw new Error('Attorney profile not found');
+}
+
+const { Content } = await render(entry);
+const { name, title, credentials, admissions } = entry.data;
+
+const pageTitle = `${name} - ${title} | Louisville Criminal Defense`;
+---
+
+<MainLayout title={pageTitle}>
+  <Header slot="header" />
+
+  <section class="py-20 bg-bg-surface">
+    <div class="container grid lg:grid-cols-12 gap-12">
+      <!-- Sidebar / Credentials -->
+      <aside class="lg:col-span-4 space-y-8">
+        <div class="bg-white p-8 rounded-sm shadow-sm border-t-4 border-primary">
+            <div class="w-48 h-48 bg-navy-900 rounded-full mb-6 mx-auto overflow-hidden border-4 border-accent shadow-lg">
+                <img src="/images/ebert-haegele.jpg" alt="Ebert Haegele" class="w-full h-full object-cover" />
+            </div>
+            <h1 class="text-2xl font-serif font-bold text-center mb-2">{name}</h1>
+            <p class="text-center text-sm font-bold text-secondary uppercase tracking-wider mb-6">{title}</p>
+            
+            <div class="space-y-6">
+                <div>
+                    <h3 class="font-bold text-sm uppercase mb-2">Education & Credentials</h3>
+                    <ul class="text-sm list-disc pl-4 space-y-1 text-gray-600">
+                        {credentials.map(c => <li>{c}</li>)}
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-sm uppercase mb-2">Bar Admissions</h3>
+                    <ul class="text-sm list-disc pl-4 space-y-1 text-gray-600">
+                        {admissions.map(a => <li>{a}</li>)}
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-gray-100 text-center">
+                <Button href="/contact" variant="primary" class="w-full">Contact Ebert</Button>
+            </div>
+        </div>
+      </aside>
+
+      <!-- Main Bio Content -->
+      <article class="lg:col-span-8 prose prose-lg prose-slate max-w-none prose-headings:font-serif prose-headings:text-primary prose-a:text-accent">
+        <Content />
+      </article>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</MainLayout>

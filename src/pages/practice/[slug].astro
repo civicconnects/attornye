@@ -1,0 +1,72 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+import Button from '../../components/common/Button.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const practices = await getCollection('practices');
+  return practices.map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { title, description, statutes } = entry.data;
+
+const pageTitle = `${title} | Louisville Defense Attorney`;
+---
+
+<MainLayout title={pageTitle} description={description}>
+  <Header slot="header" />
+
+  <!-- Breadcrumb / Header -->
+  <div class="bg-navy-900 text-white py-12">
+    <div class="container">
+      <p class="text-accent text-sm font-bold uppercase tracking-wider mb-2">Practice Areas</p>
+      <h1 class="text-4xl lg:text-5xl font-serif font-bold">{title}</h1>
+    </div>
+  </div>
+
+  <div class="container py-16 grid lg:grid-cols-12 gap-12">
+    <!-- Main Content -->
+    <article class="lg:col-span-8 prose prose-lg prose-slate max-w-none prose-headings:font-serif prose-headings:text-primary">
+       <div class="bg-amber-50 border-l-4 border-accent p-6 mb-8 not-prose">
+         <h4 class="font-bold text-navy-900 mb-2">Quick Summary</h4>
+         <p class="text-sm text-navy-800">{description}</p>
+       </div>
+       <Content />
+    </article>
+
+    <!-- Sidebar -->
+    <aside class="lg:col-span-4 space-y-8">
+      <!-- Statute Box -->
+      {statutes && (
+        <div class="bg-white p-6 border border-gray-200 rounded shadow-sm">
+          <h3 class="font-serif text-lg font-bold mb-4">Relevant Statutes</h3>
+          <ul class="space-y-2">
+            {statutes.map(s => (
+                <li class="bg-gray-50 px-3 py-2 text-sm font-mono text-gray-600 border border-gray-100 rounded">
+                    {s}
+                </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <!-- CTA Box -->
+      <div class="bg-navy-900 text-white p-8 rounded shadow-lg text-center">
+        <h3 class="font-serif text-2xl mb-4">Facing This Charge?</h3>
+        <p class="text-gray-300 text-sm mb-6">Every hour you wait is an hour the prosecution gets ahead. Let's start your defense.</p>
+        <Button href="/contact" variant="primary" class="w-full">
+            Start Your Defense
+        </Button>
+      </div>
+    </aside>
+  </div>
+
+  <Footer slot="footer" />
+</MainLayout>

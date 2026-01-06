@@ -1,0 +1,56 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-primary text-white pt-16 pb-8">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+      <!-- About -->
+      <div>
+        <h3 class="font-serif text-xl font-bold text-white mb-4">Attorney E</h3>
+        <p class="text-gray-400 mb-6 leading-relaxed">
+          Former Prosecutor tailored to your defense. Serving Louisville, Jefferson County, and surrounding Kentucky areas.
+        </p>
+      </div>
+
+      <!-- Practice Areas -->
+      <div>
+        <h4 class="font-bold text-accent mb-4 uppercase tracking-wider text-sm">Practice Areas</h4>
+        <ul class="space-y-2">
+          <li><a href="/practice/dui" class="text-gray-400 hover:text-white transition-colors">DUI Defense</a></li>
+          <li><a href="/practice/drug-crimes" class="text-gray-400 hover:text-white transition-colors">Drug Crimes</a></li>
+          <li><a href="/practice/violent-crimes" class="text-gray-400 hover:text-white transition-colors">Violent Crimes</a></li>
+          <li><a href="/practice/white-collar" class="text-gray-400 hover:text-white transition-colors">White Collar</a></li>
+        </ul>
+      </div>
+
+      <!-- Local SEO / NAP -->
+      <div>
+        <h4 class="font-bold text-accent mb-4 uppercase tracking-wider text-sm">Contact</h4>
+        <address class="not-italic text-gray-400 space-y-2">
+          <p>123 Legal Avenue, Suite 100</p>
+          <p>Louisville, KY 40202</p>
+          <p class="mt-4"><a href="tel:+15020000000" class="hover:text-white">(502) 000-0000</a></p>
+          <p><a href="mailto:defense@attorneyesq.com" class="hover:text-white">defense@attorneyesq.com</a></p>
+        </address>
+      </div>
+
+      <!-- Disclaimer -->
+      <div>
+        <h4 class="font-bold text-accent mb-4 uppercase tracking-wider text-sm">Legal</h4>
+        <p class="text-xs text-gray-500 leading-relaxed">
+          The information on this website is for general information purposes only. Nothing on this site should be taken as legal advice for any individual case or situation.
+        </p>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
+      <p>&copy; {year} Attorney E. All Rights Reserved.</p>
+      <div class="flex gap-4 mt-4 md:mt-0">
+        <a href="/privacy" class="hover:text-white">Privacy Policy</a>
+        <a href="/sitemap.xml" class="hover:text-white">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>

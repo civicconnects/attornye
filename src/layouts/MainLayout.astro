@@ -1,0 +1,98 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "High-End Criminal Defense Attorney in Louisville, KY. Former Prosecutor. Tireless Defender." } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <title>{title}</title>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://attorneye-demo.pages.dev/#ebert-haegele",
+          "name": "Ebert Haegele",
+          "jobTitle": "Criminal Defense Attorney",
+          "url": "https://attorneye-demo.pages.dev",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Louisville",
+            "addressRegion": "KY",
+            "addressCountry": "US"
+          },
+          "alumniOf": [
+            {
+              "@type": "CollegeOrUniversity",
+              "name": "University of Louisville"
+            },
+            {
+              "@type": "CollegeOrUniversity",
+              "name": "Bellarmine University"
+            }
+          ],
+          "knowsAbout": [
+            "Criminal Defense",
+            "Violent Crime Defense",
+            "Drug Charges",
+            "Gun Charges",
+            "Federal Criminal Law",
+            "Organized Crime Investigations"
+          ],
+          "hasOccupation": {
+            "@type": "Occupation",
+            "name": "Attorney at Law"
+          }
+        },
+        {
+          "@type": "LegalService",
+          "@id": "https://attorneye-demo.pages.dev/#criminal-defense",
+          "name": "Criminal Defense Attorney Services",
+          "provider": {
+            "@id": "https://attorneye-demo.pages.dev/#ebert-haegele"
+          },
+          "areaServed": {
+            "@type": "AdministrativeArea",
+            "name": "Louisville, Kentucky"
+          },
+          "serviceType": [
+            "Criminal Defense",
+            "Felony Defense",
+            "Misdemeanor Defense",
+            "Federal Criminal Defense"
+          ]
+        }
+      ]
+    }
+    </script>
+  </head>
+  <body class="bg-bg-base text-text-main flex flex-col min-h-screen">
+    <slot name="header" />
+    
+    <main class="flex-grow">
+      <slot />
+    </main>
+    
+    <slot name="footer" />
+  </body>
+</html>

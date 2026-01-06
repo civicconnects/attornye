@@ -1,0 +1,172 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Button from '../components/common/Button.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import DefinitionBlock from '../components/common/DefinitionBlock.astro';
+import { getCollection } from 'astro:content';
+
+const practices = await getCollection('practices');
+const sortedPractices = practices.sort((a, b) => a.data.order - b.data.order);
+
+const title = "High-End Criminal Defense Attorney | Louisville, KY";
+---
+
+<MainLayout title={title}>
+  <Header slot="header" />
+
+  <!-- Hero Section -->
+  <section class="relative bg-navy-900 text-white py-20 lg:py-32 overflow-hidden">
+    <!-- Abstract Background Pattern -->
+    <div class="absolute inset-0 opacity-10 pointer-events-none">
+      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="0.5"/>
+        </pattern>
+        <rect width="100%" height="100%" fill="url(#grid)" />
+      </svg>
+    </div>
+
+    <div class="container relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+      <div class="space-y-6">
+        <h1 class="text-5xl lg:text-7xl font-serif font-bold text-white leading-tight">
+          Former Prosecutor.<br/>
+          <span class="text-accent">Tireless Defender.</span>
+        </h1>
+        <p class="text-xl text-gray-300 max-w-lg leading-relaxed">
+          When the Commonwealth builds a case against you, I know exactly how they do it—and how to take it apart. Defending freedom in Jefferson County and beyond.
+        </p>
+        <div class="flex flex-wrap gap-4 pt-4">
+          <Button href="/contact" variant="primary">Request Case Review</Button>
+          <Button href="/about" variant="secondary" class="border-white text-white hover:bg-white hover:text-navy-900">
+            Meet the Attorney
+          </Button>
+        </div>
+      </div>
+      
+      <!-- Hero Image -->
+      <div class="relative mt-12 lg:mt-0">
+        <div class="absolute inset-0 bg-gradient-to-tr from-accent to-bronze-500 rounded-lg transform rotate-3 opacity-20 blur-xl"></div>
+        <div class="relative rounded-lg shadow-2xl overflow-hidden border-4 border-navy-800">
+           <img src="/images/ebert-haegele.jpg" alt="Ebert Haegele, Attorney at Law" class="w-full h-auto object-cover" />
+           
+           <div class="absolute bottom-0 left-0 right-0 bg-navy-900 bg-opacity-90 p-6 border-t border-accent">
+              <h3 class="font-serif text-xl mb-3 text-white">Proven Track Record</h3>
+               <ul class="space-y-2 text-xs text-gray-300">
+                  <li class="flex items-center gap-2">
+                     <span class="text-accent">✓</span> 12 Years as Prosecutor
+                  </li>
+                  <li class="flex items-center gap-2">
+                     <span class="text-accent">✓</span> Federal Special Assistant Experience
+                  </li>
+               </ul>
+           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Signals Bar -->
+  <section class="bg-navy-800 text-gray-400 py-8 border-b border-navy-700">
+    <div class="container flex flex-wrap justify-around items-center gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+       <!-- Placeholders for Bar Badges -->
+       <span class="text-sm font-bold tracking-widest uppercase">Kentucky Bar Association</span>
+       <span class="text-sm font-bold tracking-widest uppercase">National Assoc. of Criminal Defense Lawyers</span>
+       <span class="text-sm font-bold tracking-widest uppercase">Louisville Bar Association</span>
+    </div>
+  </section>
+
+  <!-- Practice Areas Grid -->
+  <section class="py-24 bg-bg-surface">
+    <div class="container">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <h2 class="text-4xl mb-4">Strategic Defense Strategy</h2>
+        <p class="text-text-muted">
+          We limit our practice to criminal defense. We don't dabble. We dominate.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {sortedPractices.map(practice => (
+          <a href={`/practice/${practice.slug}`} class="group bg-white p-8 rounded-sm shadow-sm hover:shadow-xl transition-all duration-300 border-t-4 border-transparent hover:border-accent">
+            <h3 class="text-2xl mb-3 group-hover:text-accent transition-colors">{practice.data.title}</h3>
+            <p class="text-gray-600 mb-6 line-clamp-3">
+              {practice.data.description}
+            </p>
+            <span class="text-sm font-bold text-primary uppercase tracking-wider group-hover:underline">
+              Defense Strategy &rarr;
+            </span>
+          </a>
+        ))}
+        
+        <!-- Callout to Definitions (ASO Strategy) -->
+        <a href="/definitions" class="group bg-navy-900 p-8 rounded-sm shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-center items-center text-center">
+            <h3 class="text-2xl mb-3 text-white">Legal Encyclopedia</h3>
+            <p class="text-gray-400 mb-6">
+              Educate yourself on Kentucky statues, terms, and penalties.
+            </p>
+            <span class="text-sm font-bold text-accent uppercase tracking-wider group-hover:underline">
+              Browse Definitions &rarr;
+            </span>
+        </a>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- Legal Insights / Definition Demo -->
+  <section class="py-16 bg-white border-t border-gray-100">
+    <div class="container max-w-3xl">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-serif font-bold text-primary">Legal Education</h2>
+        <p class="text-gray-600 mt-2">Clear answers to complex questions.</p>
+      </div>
+      
+      <DefinitionBlock
+        title="What Is a Criminal Defense Attorney?"
+        definition="A criminal defense attorney is a lawyer who represents individuals accused of criminal offenses, including misdemeanors and felonies. Their role includes protecting constitutional rights, evaluating evidence, negotiating with prosecutors, and advocating for clients in court."
+        expanded="Criminal defense attorneys may represent clients at all stages of the legal process, from investigation and arrest through trial, sentencing, and appeal. Effective defense often requires an understanding of criminal procedure, evidence, and prosecutorial strategy."
+      />
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="bg-accent text-white py-20">
+    <div class="container text-center">
+      <h2 class="text-3xl md:text-4xl font-serif font-bold text-white mb-6">Your Future Is Worth Fighting For</h2>
+      <p class="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
+        Time is critical in criminal defense. The prosecution is already building their case. We need to start building yours.
+      </p>
+      <Button href="/contact" class="bg-white text-accent hover:bg-gray-100 hover:text-accent-dark">
+        Schedule Free Consultation
+      </Button>
+    </div>
+  </section>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a criminal defense attorney?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A criminal defense attorney represents individuals accused of crimes and works to protect their constitutional rights throughout the criminal justice process."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does a former prosecutor bring to criminal defense?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A former prosecutor brings insight into charging decisions, evidence evaluation, and courtroom strategy, which can inform a more strategic defense approach."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <Footer slot="footer" />
+</MainLayout>

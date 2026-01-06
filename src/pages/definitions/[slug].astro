@@ -1,0 +1,61 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const definitions = await getCollection('definitions');
+  return definitions.map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { term, snippet, jurisdiction, related_practices } = entry.data;
+
+const pageTitle = `What is ${term} in ${jurisdiction}? | Legal Definitions`;
+---
+
+<MainLayout title={pageTitle} description={snippet}>
+  <Header slot="header" />
+
+  <article class="max-w-4xl mx-auto py-16 px-4">
+    <!-- Definition Header -->
+    <header class="mb-12 border-b border-gray-200 pb-8">
+      <div class="flex items-center gap-3 text-sm text-gray-500 mb-4">
+        <span>Legal Encyclopedia</span>
+        <span>&bull;</span>
+        <span class="bg-gray-100 px-2 py-1 rounded text-xs uppercase tracking-wider font-bold">{jurisdiction}</span>
+      </div>
+      <h1 class="text-4xl md:text-5xl font-serif font-bold text-primary mb-6">{term}</h1>
+      
+      <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r">
+        <p class="text-xl text-blue-900 font-serif italic">"{snippet}"</p>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="prose prose-lg prose-slate max-w-none prose-headings:font-serif">
+      <Content />
+    </div>
+
+    <!-- Related Practices Footer -->
+    {related_practices && (
+      <div class="mt-16 pt-8 border-t border-gray-200">
+        <h3 class="font-bold text-gray-900 mb-4">Related Practice Areas</h3>
+        <div class="flex gap-4">
+          {related_practices.map(slug => (
+            <a href={`/practice/${slug}`} class="text-accent font-bold hover:underline capitalize">
+              {slug.replace('-', ' ')} Defense
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+  </article>
+
+  <Footer slot="footer" />
+</MainLayout>

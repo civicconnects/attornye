@@ -1,0 +1,39 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const definitions = await getCollection('definitions');
+const sortedDefinitions = definitions.sort((a, b) => a.data.term.localeCompare(b.data.term));
+
+const title = "Kentucky Criminal Law Glossary | Legal Definitions";
+---
+
+<MainLayout title={title} description="A comprehensive glossary of Kentucky criminal law terms explained in plain English by a former prosecutor.">
+  <Header slot="header" />
+
+  <div class="bg-gray-50 py-16">
+    <div class="container text-center max-w-3xl">
+      <h1 class="text-4xl lg:text-5xl font-serif font-bold text-primary mb-6">Legal Definitions</h1>
+      <p class="text-xl text-gray-600">
+        Criminal law is full of complex terminology. We believe in transparency. 
+        Here is a guide to the language used in the courtroom.
+      </p>
+    </div>
+  </div>
+
+  <div class="container py-16">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {sortedDefinitions.map(entry => (
+        <a href={`/definitions/${entry.slug}`} class="block bg-white border border-gray-200 p-6 rounded hover:border-accent hover:shadow-md transition-all">
+          <h2 class="font-serif text-xl font-bold text-primary mb-2">{entry.data.term}</h2>
+          <p class="text-sm text-gray-600 mb-4 line-clamp-2">{entry.data.snippet}</p>
+          <span class="text-xs font-bold text-accent uppercase tracking-wider">Read Definition &rarr;</span>
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <Footer slot="footer" />
+</MainLayout>
